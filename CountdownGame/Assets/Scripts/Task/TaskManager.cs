@@ -7,10 +7,12 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
     private GameManager gameManager;
+    [SerializeField] private NotificationSpawner notficationSpawner;
 
     [Header("UI")]
     [SerializeField] private TMP_Text tasksLeftText;
     [SerializeField] private GameObject taskNotification;
+    //[SerializeField] private GameObject notificationPrefab;
 
     [Header("Parameters")]
     public int failCount;
@@ -30,9 +32,9 @@ public class TaskManager : MonoBehaviour
         gameManager = GameController.GetComponent<GameManager>();
 
         //Set up tasks for this level or whatever
-        TaskData testTask= new TaskData("eat",2.00f,120.00f,TabType.ALBUM);
-        TaskData testTaskB = new TaskData("whine", 12.00f, 120.00f, TabType.ALBUM);
-        designatedTasks.Add(testTask);
+        TaskData testTask= new TaskData("ALBUM:Sort time",2.00f,120.00f,TabType.ALBUM);
+        TaskData testTaskB = new TaskData("ALBUM: Sorting again", 12.00f, 120.00f, TabType.ALBUM);
+        designatedTasks.Add(testTask); 
         designatedTasks.Add(testTaskB);
 
         tasksLeft = designatedTasks.Count;
@@ -50,9 +52,8 @@ public class TaskManager : MonoBehaviour
             {
                 task.isActive = true;
                 Debug.Log("NEEWWWWWW TASK! :>");
-                StartCoroutine(ShowTaskNotification());
-
-
+                //StartCoroutine(ShowTaskNotification());
+                notficationSpawner.SpawnNotification(task.taskName, "A new task has been set!");
             }
             //Complete tasks
             if (task.isComplete)
@@ -106,14 +107,14 @@ public class TaskManager : MonoBehaviour
         tasksLeftText.text = "Tasks Left:" + tasksLeft;
     }
 
-    private IEnumerator ShowTaskNotification()
-    {
-        
+    //private IEnumerator ShowTaskNotification()
+    //{
+    //    GameObject albumObject = Instantiate(albumPrefab, this.transform);
 
 
-        LeanTween.moveX(taskNotification, 5, 0.5f).setEase(easeType);
-        yield return new WaitForSeconds(notificationDisplayLength);
-        LeanTween.moveX(taskNotification,initialX, 0.5f).setEase(easeType);
+    //    LeanTween.moveX(taskNotification, 5, 0.5f).setEase(easeType);
+    //    yield return new WaitForSeconds(notificationDisplayLength);
+    //    LeanTween.moveX(taskNotification,initialX, 0.5f).setEase(easeType);
 
-    }
+    //}
 }

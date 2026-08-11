@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         timeText.text = "Time remaining: " + ((int)timer);
 
-        if (timer <= 0)
+        if (timer >= 120)
         {
             GameOver();
         }
