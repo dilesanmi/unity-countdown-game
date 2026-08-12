@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using Message;
+using Notification;
 using Relationship;
 using SoundControl;
 using TMPro;
 using UnityEngine;
-
 
 /// <summary>
 /// Manages anything related to the message UI and typing messages to your partner
@@ -14,6 +14,7 @@ public class MessageManager : MonoBehaviour
     [Header("Management")]
     [SerializeField] private RelationshipManager relationshipManager;
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private NotificationSpawner notficationSpawner;
 
     [Header("UI")]
     [SerializeField] private GameObject messageUI;
@@ -50,7 +51,6 @@ public class MessageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (partnerWaiting && !isOpen)
         {
             notificationIcon.SetActive(true);
@@ -81,7 +81,6 @@ public class MessageManager : MonoBehaviour
             {
                 SendReply();
             }
-
         }
 
         if (currentMessage != null)
@@ -126,16 +125,15 @@ public class MessageManager : MonoBehaviour
         {
             return;
         }
-        if (message.type != TextMessageType.Unrelated)
-        {
-            currentMessage = message;
-            _currentReply = message.response;
-            relationshipManager.StartLoseAffection();
-            SoundEffectManager.Play("sfx_notification");
+      
+        currentMessage = message;
+        _currentReply = message.response;
+        relationshipManager.StartLoseAffection();
+        SoundEffectManager.Play("sfx_notification");
+        NotificationSpawner.SpawnNotification("NEW MESSAGE:", "New message recieved! <3");
 
-            UpdateReply("");
-            partnerWaiting = true;
-        }
+        UpdateReply("");
+        partnerWaiting = true;
     }
 
     private void TypeReply(char c)
@@ -167,9 +165,6 @@ public class MessageManager : MonoBehaviour
             TurnReplyGreen();
             return;
         }
-
-
-
     }
 
     private void ResetMessages()

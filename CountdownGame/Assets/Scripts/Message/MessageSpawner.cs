@@ -8,6 +8,7 @@ namespace Message
     {
         [SerializeField] private MessageManager messageManager;
 
+
         [Header("Timing")]
         [SerializeField] private float minDelay = 5f;
         [SerializeField] private float maxDelay = 10f;
@@ -24,7 +25,7 @@ namespace Message
         {
             while (true)
             {
-                if (!messageManager.isOpen)
+                if (messageManager.currentMessage==null)
                 {
 
                     yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
@@ -34,11 +35,6 @@ namespace Message
                         messages[Random.Range(0, messages.Count)];
 
                     messageManager.GetMessage(randomMessage);
-                }
-                else
-                {
-                    // Wait while phone is open
-                    yield return null;
                 }
             }
         }

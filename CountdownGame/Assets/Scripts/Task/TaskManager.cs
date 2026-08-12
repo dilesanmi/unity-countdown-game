@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using SoundControl;
+using Notification;
 using TMPro;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
     private GameManager gameManager;
-    [SerializeField] private NotificationSpawner notficationSpawner;
 
     [Header("UI")]
     [SerializeField] private TMP_Text tasksLeftText;
     [SerializeField] private GameObject taskNotification;
-    //[SerializeField] private GameObject notificationPrefab;
 
     [Header("Parameters")]
     public int failCount;
@@ -53,7 +52,7 @@ public class TaskManager : MonoBehaviour
                 task.isActive = true;
                 Debug.Log("NEEWWWWWW TASK! :>");
                 //StartCoroutine(ShowTaskNotification());
-                notficationSpawner.SpawnNotification(task.taskName, "A new task has been set!");
+                NotificationSpawner.SpawnNotification(task.taskName, "A new task has been set!");
             }
             //Complete tasks
             if (task.isComplete)
