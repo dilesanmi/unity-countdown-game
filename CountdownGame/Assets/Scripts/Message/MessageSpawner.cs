@@ -25,7 +25,7 @@ namespace Message
         {
             while (true)
             {
-                if (messageManager.currentMessage==null)
+                if (messageManager.currentMessage == null)
                 {
 
                     yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
@@ -35,6 +35,10 @@ namespace Message
                         messages[Random.Range(0, messages.Count)];
 
                     messageManager.GetMessage(randomMessage);
+                }
+                else
+                {
+                    yield return null;
                 }
             }
         }
