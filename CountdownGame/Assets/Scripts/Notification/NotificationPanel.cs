@@ -1,9 +1,5 @@
-using SoundControl;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class NotificationPanel : MonoBehaviour
 {
@@ -16,4 +12,10 @@ public class NotificationPanel : MonoBehaviour
         descText.text = desc;
     }
 
+    public void CloseNotification()
+    {
+        Debug.Log("Yeah ik im lowk in the way mb hb");
+        Destroy(gameObject);
+    }
 }
+

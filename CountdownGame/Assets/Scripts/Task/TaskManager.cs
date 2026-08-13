@@ -11,14 +11,12 @@ public class TaskManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TMP_Text tasksLeftText;
-    [SerializeField] private GameObject taskNotification;
 
     [Header("Parameters")]
     public int failCount;
     public int maxFailures=1;
     public int notificationDisplayLength;
     private int tasksLeft;
-    float initialX;
     [SerializeField] LeanTweenType easeType;
 
 
@@ -37,8 +35,6 @@ public class TaskManager : MonoBehaviour
         designatedTasks.Add(testTaskB);
 
         tasksLeft = designatedTasks.Count;
-
-        initialX = taskNotification.transform.position.x;
     }
 
     // Update is called once per frame

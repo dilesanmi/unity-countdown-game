@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: Is it true that new couples break up after 6 months?? I'm scared
   type: 2
-  response: 'That isn''t true! That wont happen to us '
+  response: That isn't true! That wont happen to us
