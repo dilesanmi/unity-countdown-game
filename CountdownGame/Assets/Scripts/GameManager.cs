@@ -6,7 +6,15 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public float timer = 0;
 
+    int hours, minutes;
+    private int startHour = 9;
+
+    private int lastClockUpdate = -1;
+
+    private float secondsPerHour = 30;//So a 9-5 would be 240 seconds aka 4 minutes
+
     [SerializeField] private TMP_Text timeText;
+
 
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject gameWonScreen;
@@ -17,15 +25,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gameOverScreen.SetActive(false);
         gameWonScreen.SetActive(false);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        int quarter = Mathf.FloorToInt(timer / (secondsPerHour / 4));
 
-        timeText.text = "Time remaining: " + ((int)timer);
+        if (quarter != lastClockUpdate)
+        {
+            lastClockUpdate = quarter;
+            UpdateClock();
+        }
+
+        timer += Time.deltaTime;
 
         if (timer >= 120)
         {
@@ -55,6 +68,21 @@ public class GameManager : MonoBehaviour
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
+    }
+
+    void UpdateClock()
+    {
+        timeText.text = ConvertTimerToClock();
+    }
+
+    public string ConvertTimerToClock() {
+
+        float totalMinutesInGame = (timer / secondsPerHour) * 60f;
+
+        hours = startHour + Mathf.FloorToInt(totalMinutesInGame / 60f);
+        minutes = Mathf.FloorToInt(totalMinutesInGame % 60f);
+
+        return $"{hours}:{minutes:00}";
     }
 
 }
