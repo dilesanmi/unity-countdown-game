@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d6e2e340f3a1924c815d9f4bb2d5fc9, type: 3}
-  m_Name: PlaceholderA
+  m_Script: {fileID: 11500000, guid: f3e953a7d8cd21b4692c728bc27b6f2e, type: 3}
+  m_Name: cv_2026_final_superfinal.docx
   m_EditorClassIdentifier: 
-  messageText: Placeholder A
-  type: 2
-  response: Testing
+  photoImage: {fileID: 0}
+  category: 3

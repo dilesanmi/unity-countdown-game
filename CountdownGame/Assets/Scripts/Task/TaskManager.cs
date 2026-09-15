@@ -31,8 +31,10 @@ public class TaskManager : MonoBehaviour
         //Set up tasks for this level or whatever
         TaskData testTask= new TaskData("ALBUM:Sort time",2.00f,120.00f,TabType.ALBUM);
         TaskData testTaskB = new TaskData("ALBUM: Sorting again", 12.00f, 120.00f, TabType.ALBUM);
+        TaskData testTaskC = new TaskData("ALBUM: Sorting again", 20.00f, 120.00f, TabType.ALBUM);
         designatedTasks.Add(testTask); 
         designatedTasks.Add(testTaskB);
+        designatedTasks.Add(testTaskC);
 
         tasksLeft = designatedTasks.Count;
     }

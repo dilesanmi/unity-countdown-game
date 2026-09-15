@@ -62,12 +62,12 @@ public class AlbumFolder : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (eventData.pointerDrag != null && eventData.pointerDrag.CompareTag("Photo"))
         {
-            folderImage.color = Color.blue;
+            folderImage.color = Color.cyan;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        folderImage.color = Color.gray;//This would be white when I have actual assets
+        folderImage.color = Color.white;
     }
 }    
